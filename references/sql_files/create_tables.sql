@@ -148,13 +148,13 @@ people_id numeric PRIMARY KEY,
 name text,
 height numeric,
 weight numeric,
-date_value date,
+birth_date date,
 birth_place text
 );
 CREATE TABLE storm_record.storm (
 storm_id numeric PRIMARY KEY,
 name text,
-date_value date,
+dates_active date,
 max_speed numeric,
 damage_millions_usd numeric,
 number_deaths numeric
@@ -316,20 +316,20 @@ product_price numeric
 CREATE TABLE department_store.Supplier_Addresses (
 supplier_id numeric PRIMARY KEY,
 address_id numeric,
-date_value date,
-date_value date
+date_from date,
+date_to date
 );
 CREATE TABLE department_store.Customer_Addresses (
 customer_id numeric PRIMARY KEY,
 address_id numeric,
-date_value date,
-date_value date
+date_from date,
+date_to date
 );
 CREATE TABLE department_store.Customer_Orders (
 order_id numeric PRIMARY KEY,
 customer_id numeric,
 order_status_code text,
-date_value date
+order_date date
 );
 CREATE TABLE department_store.Department_Stores (
 dept_store_id numeric PRIMARY KEY,
@@ -352,29 +352,29 @@ product_id numeric
 CREATE TABLE department_store.Product_Suppliers (
 product_id numeric PRIMARY KEY,
 supplier_id numeric,
-date_value date,
-date_value date,
+date_supplied_from date,
+date_supplied_to date,
 total_amount_purchased text,
 total_value_purchased numeric
 );
 CREATE TABLE department_store.Staff_Department_Assignments (
 staff_id numeric PRIMARY KEY,
 department_id numeric,
-date_value date,
+date_assigned_from date,
 job_title_code text,
-date_value date
+date_assigned_to date
 );
 CREATE TABLE music_4.artist (
 artist_id numeric PRIMARY KEY,
 artist text,
 age numeric,
 famous_title text,
-date_value date
+famous_release_date date
 );
 CREATE TABLE music_4.volume (
 volume_id numeric PRIMARY KEY,
 volume_issue text,
-date_value date,
+issue_date date,
 weeks_on_top numeric,
 song text,
 artist_id numeric
@@ -382,7 +382,7 @@ artist_id numeric
 CREATE TABLE music_4.music_festival (
 id numeric PRIMARY KEY,
 music_festival text,
-date_value date,
+date_of_ceremony date,
 category text,
 volume numeric,
 result text
@@ -403,8 +403,8 @@ customer_phone text
 CREATE TABLE insurance_fnol.Customers_Policies (
 customer_id numeric PRIMARY KEY,
 policy_id numeric,
-date_value date,
-date_value date
+date_opened date,
+date_closed date
 );
 CREATE TABLE insurance_fnol.First_Notification_of_Loss (
 fnol_id numeric PRIMARY KEY,
@@ -415,12 +415,12 @@ service_id numeric
 CREATE TABLE insurance_fnol.Claims (
 claim_id numeric PRIMARY KEY,
 fnol_id numeric,
-date_value date
+effective_date date
 );
 CREATE TABLE insurance_fnol.Settlements (
 settlement_id numeric PRIMARY KEY,
 claim_id numeric,
-date_value date,
+effective_date date,
 settlement_amount numeric
 );
 CREATE TABLE cinema.film (
@@ -429,7 +429,7 @@ rank_in_series numeric,
 number_in_season numeric,
 title text,
 directed_by text,
-date_value date,
+original_air_date date,
 production_code text
 );
 CREATE TABLE cinema.cinema (
@@ -525,8 +525,8 @@ other_company_details text
 CREATE TABLE assets_maintenance.Maintenance_Contracts (
 maintenance_contract_id numeric PRIMARY KEY,
 maintenance_contract_company_id numeric,
-date_value date,
-date_value date,
+contract_start_date date,
+contract_end_date date,
 other_contract_details text
 );
 CREATE TABLE assets_maintenance.Parts (
@@ -554,8 +554,8 @@ supplier_company_id numeric,
 asset_details text,
 asset_make text,
 asset_model text,
-date_value date,
-date_value date,
+asset_acquired_date date,
+asset_disposed_date date,
 other_asset_details text
 );
 CREATE TABLE assets_maintenance.Asset_Parts (
@@ -577,7 +577,7 @@ CREATE TABLE assets_maintenance.Fault_Log (
 fault_log_entry_id numeric PRIMARY KEY,
 asset_id numeric,
 recorded_by_staff_id numeric,
-date_value date,
+fault_log_entry_datetime date,
 fault_description text,
 other_fault_details text
 );
@@ -587,8 +587,8 @@ contact_staff_id numeric,
 engineer_id numeric,
 fault_log_entry_id numeric,
 fault_status text,
-date_value date,
-date_value date,
+visit_start_datetime date,
+visit_end_datetime date,
 other_visit_details text
 );
 CREATE TABLE assets_maintenance.Part_Faults (
@@ -640,27 +640,27 @@ CREATE TABLE student_assessment.People_Addresses (
 person_address_id numeric PRIMARY KEY,
 person_id numeric,
 address_id numeric,
-date_value date,
-date_value date
+date_from date,
+date_to date
 );
 CREATE TABLE student_assessment.Student_Course_Registrations (
 student_id numeric PRIMARY KEY,
 course_id numeric,
-date_value date
+registration_date date
 );
 CREATE TABLE student_assessment.Student_Course_Attendance (
 student_id numeric PRIMARY KEY,
 course_id numeric,
-date_value date
+date_of_attendance date
 );
 CREATE TABLE student_assessment.Candidates (
-date_value date PRIMARY KEY,
-date_value date
+candidate_id date PRIMARY KEY,
+candidate_details date
 );
 CREATE TABLE student_assessment.Candidate_Assessments (
-date_value date PRIMARY KEY,
+candidate_id date PRIMARY KEY,
 qualification text,
-date_value date,
+assessment_date date,
 asessment_outcome_code text
 );
 CREATE TABLE dog_kennels.Breeds (
@@ -700,12 +700,12 @@ breed_code text,
 size_code text,
 name text,
 age text,
-date_value date,
+date_of_birth date,
 gender text,
 weight text,
-date_value date,
-date_value date,
-date_value date
+date_arrived date,
+date_adopted date,
+date_departed date
 );
 CREATE TABLE dog_kennels.Professionals (
 professional_id numeric PRIMARY KEY,
@@ -725,7 +725,7 @@ treatment_id numeric PRIMARY KEY,
 dog_id numeric,
 professional_id numeric,
 treatment_type_code text,
-date_value date,
+date_of_treatment date,
 cost_of_treatment numeric
 );
 CREATE TABLE music_1.genre (
@@ -754,7 +754,7 @@ f_id numeric,
 genre_is text,
 rating numeric,
 languages text,
-date_value date,
+releasedate date,
 resolution numeric
 );
 CREATE TABLE company_employee.people (
@@ -1070,8 +1070,8 @@ address_line_1 text
 );
 CREATE TABLE e_learning.Students (
 student_id numeric PRIMARY KEY,
-date_value date,
-date_value date,
+date_of_registration date,
+date_of_latest_logon date,
 login_name text,
 password text,
 personal_name text,
@@ -1093,12 +1093,12 @@ CREATE TABLE e_learning.Student_Course_Enrolment (
 registration_id numeric PRIMARY KEY,
 student_id numeric,
 course_id numeric,
-date_value date,
-date_value date
+date_of_enrolment date,
+date_of_completion date
 );
 CREATE TABLE e_learning.Student_Tests_Taken (
 registration_id numeric,
-date_value date,
+date_test_taken date,
 test_result text
 );
 CREATE TABLE scientist_1.Scientists (
@@ -1266,7 +1266,7 @@ wid numeric
 );
 CREATE TABLE products_for_hire.Discount_Coupons (
 coupon_id numeric PRIMARY KEY,
-date_value date,
+date_issued date,
 coupon_amount numeric
 );
 CREATE TABLE products_for_hire.Customers (
@@ -1276,16 +1276,16 @@ good_or_bad_customer text,
 first_name text,
 last_name text,
 gender_mf text,
-date_value date,
-date_value date
+date_became_customer date,
+date_last_hire date
 );
 CREATE TABLE products_for_hire.Bookings (
 booking_id numeric PRIMARY KEY,
 customer_id numeric,
 booking_status_code text,
 returned_damaged_yn text,
-date_value date,
-date_value date,
+booking_start_date date,
+booking_end_date date,
 count_hired text,
 amount_payable numeric,
 amount_of_discount numeric,
@@ -1305,7 +1305,7 @@ booking_id numeric,
 customer_id numeric,
 payment_type_code text,
 amount_paid_in_full_yn text,
-date_value date,
+payment_date date,
 amount_due numeric,
 amount_paid numeric
 );
@@ -1320,11 +1320,11 @@ booked_amount numeric
 CREATE TABLE products_for_hire.View_Product_Availability (
 product_id numeric,
 booking_id numeric,
-date_value date PRIMARY KEY,
+status_date date PRIMARY KEY,
 available_yn text
 );
 CREATE TABLE candidate_poll.candidate (
-date_value date PRIMARY KEY,
+candidate_id date PRIMARY KEY,
 people_id numeric,
 poll_source text,
 date_value date,
@@ -1337,7 +1337,7 @@ CREATE TABLE candidate_poll.people (
 people_id numeric PRIMARY KEY,
 sex text,
 name text,
-date_value date,
+date_of_birth date,
 height numeric,
 weight numeric
 );
@@ -1371,8 +1371,8 @@ lastname text,
 firstname text,
 title text,
 reportsto numeric,
-date_value date,
-date_value date,
+birthdate date,
+hiredate date,
 address text,
 city text,
 state text,
@@ -1389,7 +1389,7 @@ name text
 CREATE TABLE chinook_1.Invoice (
 invoiceid numeric PRIMARY KEY,
 customerid numeric,
-date_value date,
+invoicedate date,
 billingaddress text,
 billingcity text,
 billingstate text,
@@ -1527,8 +1527,8 @@ flno numeric PRIMARY KEY,
 origin text,
 destination text,
 distance numeric,
-date_value date,
-date_value date,
+departure_date date,
+arrival_date date,
 price numeric,
 aid numeric
 );
@@ -1579,8 +1579,8 @@ other_details text
 CREATE TABLE local_govt_and_lot.Residents (
 resident_id numeric PRIMARY KEY,
 property_id numeric,
-date_value date,
-date_value date,
+date_moved_in date,
+date_moved_out date,
 other_details text
 );
 CREATE TABLE local_govt_and_lot.Organizations (
@@ -1597,10 +1597,10 @@ service_details text
 CREATE TABLE local_govt_and_lot.Residents_Services (
 resident_id numeric PRIMARY KEY,
 service_id numeric,
-date_value date,
+date_moved_in date,
 property_id numeric,
-date_value date,
-date_value date,
+date_requested date,
+date_provided date,
 other_details text
 );
 CREATE TABLE local_govt_and_lot.Things (
@@ -1613,7 +1613,7 @@ service_details text
 CREATE TABLE local_govt_and_lot.Customer_Events (
 customer_event_id numeric PRIMARY KEY,
 customer_id numeric,
-date_value date,
+date_moved_in date,
 property_id numeric,
 resident_id numeric,
 thing_id numeric
@@ -1624,16 +1624,16 @@ customer_event_id numeric,
 service_type_code text,
 resident_id numeric,
 property_id numeric,
-date_value date
+date_moved_in date
 );
 CREATE TABLE local_govt_and_lot.Timed_Status_of_Things (
 thing_id numeric PRIMARY KEY,
-date_value date,
+date_and_date date,
 status_of_thing_code text
 );
 CREATE TABLE local_govt_and_lot.Timed_Locations_of_Things (
 thing_id numeric PRIMARY KEY,
-date_value date,
+date_and_time date,
 location_code text
 );
 CREATE TABLE station_weather.train (
@@ -1704,9 +1704,9 @@ nickname text,
 first_name text,
 middle_name text,
 last_name text,
-date_value date,
-date_value date,
-date_value date
+date_of_birth date,
+date_joined_staff date,
+date_left_staff date
 );
 CREATE TABLE driving_school.Vehicles (
 vehicle_id numeric PRIMARY KEY,
@@ -1716,8 +1716,8 @@ CREATE TABLE driving_school.Customers (
 customer_id numeric PRIMARY KEY,
 customer_address_id numeric,
 customer_status_code text,
-date_value date,
-date_value date,
+date_became_customer date,
+date_of_birth date,
 first_name text,
 last_name text,
 amount_outstanding numeric,
@@ -1727,7 +1727,7 @@ cell_mobile_phone_number text
 );
 CREATE TABLE driving_school.Customer_Payments (
 customer_id numeric PRIMARY KEY,
-date_value date,
+datetime_payment date,
 payment_method_code text,
 amount_payment numeric
 );
@@ -1737,7 +1737,7 @@ customer_id numeric,
 lesson_status_code text,
 staff_id numeric,
 vehicle_id numeric,
-date_value date,
+lesson_date date,
 lesson_time text,
 price numeric
 );
@@ -2396,14 +2396,14 @@ customer_details text
 );
 CREATE TABLE tracking_orders.Invoices (
 invoice_number numeric PRIMARY KEY,
-date_value date,
+invoice_date date,
 invoice_details text
 );
 CREATE TABLE tracking_orders.Orders (
 order_id numeric PRIMARY KEY,
 customer_id numeric,
 order_status text,
-date_value date,
+date_order_placed date,
 order_details text
 );
 CREATE TABLE tracking_orders.Products (
@@ -2423,7 +2423,7 @@ shipment_id numeric PRIMARY KEY,
 order_id numeric,
 invoice_number numeric,
 shipment_tracking_number text,
-date_value date,
+shipment_date date,
 other_shipment_details text
 );
 CREATE TABLE tracking_orders.Shipment_Items (
@@ -2438,22 +2438,22 @@ CREATE TABLE insurance_policies.Customer_Policies (
 policy_id numeric PRIMARY KEY,
 customer_id numeric,
 policy_type_code text,
-date_value date,
-date_value date
+start_date date,
+end_date date
 );
 CREATE TABLE insurance_policies.Claims (
 claim_id numeric PRIMARY KEY,
 policy_id numeric,
-date_value date,
-date_value date,
+date_claim_made date,
+date_claim_settled date,
 amount_claimed numeric,
 amount_settled numeric
 );
 CREATE TABLE insurance_policies.Settlements (
 settlement_id numeric PRIMARY KEY,
 claim_id numeric,
-date_value date,
-date_value date,
+date_claim_made date,
+date_claim_settled date,
 amount_claimed numeric,
 amount_settled numeric,
 customer_policy_id numeric
@@ -2462,7 +2462,7 @@ CREATE TABLE insurance_policies.Payments (
 payment_id numeric PRIMARY KEY,
 settlement_id numeric,
 payment_method_code text,
-date_value date,
+date_payment_made date,
 amount_payment numeric
 );
 CREATE TABLE gas_company.company (
@@ -2522,7 +2522,7 @@ individual_last_name text
 );
 CREATE TABLE e_government.Organizations (
 organization_id numeric PRIMARY KEY,
-date_value date,
+date_formed date,
 organization_name text,
 uk_vat_number text
 );
@@ -2535,29 +2535,29 @@ party_email text
 CREATE TABLE e_government.Organization_Contact_Individuals (
 individual_id numeric PRIMARY KEY,
 organization_id numeric,
-date_value date,
-date_value date
+date_contact_from date,
+date_contact_to date
 );
 CREATE TABLE e_government.Party_Addresses (
 party_id numeric PRIMARY KEY,
 address_id numeric,
-date_value date,
+date_address_from date,
 address_type_code text,
-date_value date
+date_address_to date
 );
 CREATE TABLE e_government.Party_Forms (
 party_id numeric PRIMARY KEY,
 form_id numeric,
-date_value date,
+date_completion_started date,
 form_status_code text,
-date_value date
+date_fully_completed date
 );
 CREATE TABLE e_government.Party_Services (
 booking_id numeric,
 customer_id numeric,
 service_id numeric,
-date_value date,
-date_value date
+service_datetime date,
+booking_made_date date
 );
 CREATE TABLE school_bus.driver (
 driver_id numeric PRIMARY KEY,
@@ -2582,7 +2582,7 @@ if_full_time boolean
 CREATE TABLE machine_repair.repair (
 repair_id numeric PRIMARY KEY,
 name text,
-date_value date,
+launch_date date,
 notes text
 );
 CREATE TABLE machine_repair.machine (
@@ -2698,7 +2698,7 @@ cost numeric
 CREATE TABLE hospital_1.Trained_In (
 physician numeric PRIMARY KEY,
 treatment numeric,
-date_value date,
+certificationdate date,
 certificationexpires time
 );
 CREATE TABLE hospital_1.Patient (
@@ -2768,7 +2768,7 @@ CREATE TABLE hospital_1.Undergoes (
 patient numeric PRIMARY KEY,
 procedures numeric,
 stay numeric,
-date_value date,
+dateundergoes date,
 physician numeric,
 assistingnurse numeric
 );
@@ -2796,30 +2796,30 @@ CREATE TABLE customers_campaigns_ecommerce.Mailshot_Campaigns (
 mailshot_id numeric PRIMARY KEY,
 product_category text,
 mailshot_name text,
-date_value date,
-date_value date
+mailshot_start_date date,
+mailshot_end_date date
 );
 CREATE TABLE customers_campaigns_ecommerce.Customer_Addresses (
 customer_id numeric,
 premise_id numeric,
-date_value date,
+date_address_from date,
 address_type_code text,
-date_value date
+date_address_to date
 );
 CREATE TABLE customers_campaigns_ecommerce.Customer_Orders (
 order_id numeric PRIMARY KEY,
 customer_id numeric,
 order_status_code text,
 shipping_method_code text,
-date_value date,
-date_value date,
+order_placed_datetime date,
+order_delivered_datetime date,
 order_shipping_charges text
 );
 CREATE TABLE customers_campaigns_ecommerce.Mailshot_Customers (
 mailshot_id numeric,
 customer_id numeric,
 outcome_code text,
-date_value date
+mailshot_customer_date date
 );
 CREATE TABLE customers_campaigns_ecommerce.Order_Items (
 item_id numeric,
@@ -2827,7 +2827,7 @@ order_item_status_code text,
 order_id numeric,
 product_id numeric,
 item_status_code text,
-date_value date,
+item_delivered_datetime date,
 item_order_quantity text
 );
 CREATE TABLE gymnast.gymnast (
@@ -2937,7 +2937,7 @@ document_id numeric PRIMARY KEY,
 document_status_code text,
 document_type_code text,
 shipping_agent_code text,
-date_value date,
+receipt_date date,
 receipt_number text,
 other_details text
 );
@@ -2966,7 +2966,7 @@ employee_id numeric
 CREATE TABLE cre_Doc_Control_Systems.Documents_Mailed (
 document_id numeric PRIMARY KEY,
 mailed_to_address_id numeric,
-date_value date
+mailing_date date
 );
 CREATE TABLE tracking_share_transactions.Investors (
 investor_id numeric PRIMARY KEY,
@@ -2985,7 +2985,7 @@ CREATE TABLE tracking_share_transactions.Transactions (
 transaction_id numeric PRIMARY KEY,
 investor_id numeric,
 transaction_type_code text,
-date_value date,
+date_of_transaction date,
 amount_of_transaction numeric,
 share_count text,
 other_details text
@@ -3029,20 +3029,20 @@ guest_id numeric PRIMARY KEY,
 gender_code text,
 guest_first_name text,
 guest_last_name text,
-date_value date
+date_of_birth date
 );
 CREATE TABLE apartment_rentals.Apartment_Bookings (
 apt_booking_id numeric PRIMARY KEY,
 apt_id numeric,
 guest_id numeric,
 booking_status_code text,
-date_value date,
-date_value date
+booking_start_date date,
+booking_end_date date
 );
 CREATE TABLE apartment_rentals.View_Unit_Status (
 apt_id numeric,
 apt_booking_id numeric,
-date_value date PRIMARY KEY,
+status_date date PRIMARY KEY,
 available_yn bit
 );
 CREATE TABLE student_transcripts_tracking.Addresses (
@@ -3098,8 +3098,8 @@ last_name text,
 cell_mobile_number text,
 email_address text,
 ssn text,
-date_value date,
-date_value date,
+date_first_registered date,
+date_left date,
 other_student_details text
 );
 CREATE TABLE student_transcripts_tracking.Student_Enrolment (
@@ -3116,7 +3116,7 @@ student_enrolment_id numeric
 );
 CREATE TABLE student_transcripts_tracking.Transcripts (
 transcript_id numeric PRIMARY KEY,
-date_value date,
+transcript_date date,
 other_details text
 );
 CREATE TABLE student_transcripts_tracking.Transcript_Contents (
@@ -3140,7 +3140,7 @@ CREATE TABLE cre_Docs_and_Epenses.Documents (
 document_id numeric PRIMARY KEY,
 document_type_code text,
 project_id numeric,
-date_value date,
+document_date date,
 document_name text,
 document_description text,
 other_details text
@@ -3208,7 +3208,7 @@ assigned_to_staff_id numeric,
 problem_id numeric,
 problem_category_code text,
 problem_status_code text,
-date_value date,
+log_entry_date date,
 log_entry_description text,
 log_entry_fix text,
 other_log_details text
@@ -3233,8 +3233,8 @@ problem_id numeric PRIMARY KEY,
 product_id numeric,
 closure_authorised_by_staff_id numeric,
 reported_by_staff_id numeric,
-date_value date,
-date_value date,
+date_problem_reported date,
+date_problem_closed date,
 problem_description text,
 other_problem_details text
 );
@@ -3357,8 +3357,8 @@ card_id numeric PRIMARY KEY,
 customer_id numeric,
 card_type_code text,
 card_number text,
-date_value date,
-date_value date,
+date_valid_from date,
+date_valid_to date,
 other_card_details text
 );
 CREATE TABLE customers_card_transactions.Financial_Transactions (
@@ -3367,7 +3367,7 @@ previous_transaction_id numeric,
 account_id numeric,
 card_id numeric,
 transaction_type text,
-date_value date,
+transaction_date date,
 transaction_amount numeric,
 transaction_comment text,
 other_transaction_details text
@@ -3480,8 +3480,8 @@ CREATE TABLE cre_Doc_Template_Mgt.Templates (
 template_id numeric PRIMARY KEY,
 version_number numeric,
 template_type_code text,
-date_value date,
-date_value date,
+date_effective_from date,
+date_effective_to date,
 template_details text
 );
 CREATE TABLE cre_Doc_Template_Mgt.Documents (
@@ -3560,7 +3560,7 @@ CREATE TABLE device.shop (
 shop_id numeric PRIMARY KEY,
 shop_name text,
 location text,
-date_value date,
+open_date date,
 open_year numeric
 );
 CREATE TABLE device.stock (
@@ -3576,16 +3576,16 @@ CREATE TABLE tracking_grants_for_research.Documents (
 document_id numeric PRIMARY KEY,
 document_type_code text,
 grant_id numeric,
-date_value date,
-date_value date,
+sent_date date,
+response_received_date date,
 other_details text
 );
 CREATE TABLE tracking_grants_for_research.Grants (
 grant_id numeric PRIMARY KEY,
 organisation_id numeric,
 grant_amount numeric,
-date_value date,
-date_value date,
+grant_start_date date,
+grant_end_date date,
 other_details text
 );
 CREATE TABLE tracking_grants_for_research.Organisation_Types (
@@ -3606,8 +3606,8 @@ CREATE TABLE tracking_grants_for_research.Project_Staff (
 staff_id numeric PRIMARY KEY,
 project_id numeric,
 role_code text,
-date_value date,
-date_value date,
+date_from date,
+date_to date,
 other_details text
 );
 CREATE TABLE tracking_grants_for_research.Projects (
@@ -3673,7 +3673,7 @@ CREATE TABLE movie_1.Rating (
 rid numeric,
 mid numeric,
 stars numeric,
-date_value date
+ratingdate date
 );
 CREATE TABLE network_1.Highschooler (
 id numeric PRIMARY KEY,
@@ -3700,7 +3700,7 @@ CREATE TABLE poker_player.people (
 people_id numeric PRIMARY KEY,
 nationality text,
 name text,
-date_value date,
+birth_date date,
 height numeric
 );
 CREATE TABLE program_share.program (
@@ -3814,18 +3814,18 @@ country text
 CREATE TABLE customers_and_invoices.Orders (
 order_id numeric PRIMARY KEY,
 customer_id numeric,
-date_value date,
+date_order_placed date,
 order_details text
 );
 CREATE TABLE customers_and_invoices.Invoices (
 invoice_number numeric PRIMARY KEY,
 order_id numeric,
-date_value date
+invoice_date date
 );
 CREATE TABLE customers_and_invoices.Accounts (
 account_id numeric PRIMARY KEY,
 customer_id numeric,
-date_value date,
+date_account_opened date,
 account_name text,
 other_account_details text
 );
@@ -3848,7 +3848,7 @@ transaction_id numeric,
 account_id numeric,
 invoice_number numeric,
 transaction_type text,
-date_value date,
+transaction_date date,
 transaction_amount numeric,
 transaction_comment text,
 other_transaction_details text
@@ -3883,16 +3883,16 @@ CREATE TABLE insurance_and_eClaims.Policies (
 policy_id numeric PRIMARY KEY,
 customer_id numeric,
 policy_type_code text,
-date_value date,
-date_value date
+start_date date,
+end_date date
 );
 CREATE TABLE insurance_and_eClaims.Claim_Headers (
 claim_header_id numeric PRIMARY KEY,
 claim_status_code text,
 claim_type_code text,
 policy_id numeric,
-date_value date,
-date_value date,
+date_of_claim date,
+date_of_settlement date,
 amount_claimed numeric,
 amount_piad numeric
 );
@@ -3900,7 +3900,7 @@ CREATE TABLE insurance_and_eClaims.Claims_Documents (
 claim_id numeric PRIMARY KEY,
 document_type_code text,
 created_by_staff_id numeric,
-date_value date
+created_date date
 );
 CREATE TABLE insurance_and_eClaims.Claims_Processing_Stages (
 claim_stage_id numeric PRIMARY KEY,
@@ -4009,7 +4009,7 @@ CREATE TABLE book_2.publication (
 publication_id numeric PRIMARY KEY,
 book_id numeric,
 publisher text,
-date_value date,
+publication_date date,
 price numeric
 );
 CREATE TABLE book_2.book (
@@ -4171,7 +4171,7 @@ CREATE TABLE sakila_1.actor (
 actor_id numeric PRIMARY KEY,
 first_name text,
 last_name text,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.address (
 address_id numeric PRIMARY KEY,
@@ -4181,23 +4181,23 @@ district text,
 city_id numeric,
 postal_code text,
 phone text,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.category (
 category_id numeric PRIMARY KEY,
 name text,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.city (
 city_id numeric PRIMARY KEY,
 city text,
 country_id numeric,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.country (
 country_id numeric PRIMARY KEY,
 country text,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.customer (
 customer_id numeric PRIMARY KEY,
@@ -4207,8 +4207,8 @@ last_name text,
 email text,
 address_id numeric,
 active boolean,
-date_value date,
-date_value date
+create_date date,
+last_update date
 );
 CREATE TABLE sakila_1.film (
 film_id numeric PRIMARY KEY,
@@ -4223,17 +4223,17 @@ length numeric,
 replacement_cost numeric,
 rating text,
 special_features text,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.film_actor (
 actor_id numeric PRIMARY KEY,
 film_id numeric,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.film_category (
 film_id numeric PRIMARY KEY,
 category_id numeric,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.film_text (
 film_id numeric PRIMARY KEY,
@@ -4244,12 +4244,12 @@ CREATE TABLE sakila_1.inventory (
 inventory_id numeric PRIMARY KEY,
 film_id numeric,
 store_id numeric,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.language (
 language_id numeric PRIMARY KEY,
 name text,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.payment (
 payment_id numeric PRIMARY KEY,
@@ -4257,17 +4257,17 @@ customer_id numeric,
 staff_id numeric,
 rental_id numeric,
 amount numeric,
-date_value date,
-date_value date
+payment_date date,
+last_update date
 );
 CREATE TABLE sakila_1.rental (
 rental_id numeric PRIMARY KEY,
-date_value date,
+rental_date date,
 inventory_id numeric,
 customer_id numeric,
-date_value date,
+return_date date,
 staff_id numeric,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.staff (
 staff_id numeric PRIMARY KEY,
@@ -4280,13 +4280,13 @@ store_id numeric,
 active boolean,
 username text,
 password text,
-date_value date
+last_update date
 );
 CREATE TABLE sakila_1.store (
 store_id numeric PRIMARY KEY,
 manager_staff_id numeric,
 address_id numeric,
-date_value date
+last_update date
 );
 CREATE TABLE real_estate_properties.Ref_Feature_Types (
 feature_type_code text PRIMARY KEY,
@@ -4305,8 +4305,8 @@ feature_description text
 CREATE TABLE real_estate_properties.Properties (
 property_id numeric PRIMARY KEY,
 property_type_code text,
-date_value date,
-date_value date,
+date_on_market date,
+date_sold date,
 property_name text,
 property_address text,
 room_count numeric,
@@ -4392,7 +4392,7 @@ gradepoint numeric
 );
 CREATE TABLE course_teach.course (
 course_id numeric PRIMARY KEY,
-date_value date,
+staring_date date,
 course text
 );
 CREATE TABLE course_teach.teacher (
@@ -4444,7 +4444,7 @@ payment_method text,
 customer_name text,
 customer_phone text,
 customer_email text,
-date_value date
+date_became_customer date
 );
 CREATE TABLE customer_deliveries.Regular_Orders (
 regular_order_id numeric PRIMARY KEY,
@@ -4458,7 +4458,7 @@ CREATE TABLE customer_deliveries.Actual_Orders (
 actual_order_id numeric PRIMARY KEY,
 order_status_code text,
 regular_order_id numeric,
-date_value date
+actual_order_date date
 );
 CREATE TABLE customer_deliveries.Actual_Order_Products (
 actual_order_id numeric,
@@ -4467,9 +4467,9 @@ product_id numeric
 CREATE TABLE customer_deliveries.Customer_Addresses (
 customer_id numeric,
 address_id numeric,
-date_value date,
+date_from date,
 address_type text,
-date_value date
+date_to date
 );
 CREATE TABLE customer_deliveries.Delivery_Routes (
 route_id numeric PRIMARY KEY,
@@ -4499,7 +4499,7 @@ actual_order_id numeric,
 delivery_status_code text,
 driver_employee_id numeric,
 truck_id numeric,
-date_value date
+delivery_date date
 );
 CREATE TABLE game_injury.stadium (
 id numeric PRIMARY KEY,
@@ -4658,7 +4658,7 @@ player_id numeric PRIMARY KEY,
 first_name text,
 last_name text,
 hand text,
-date_value date,
+birth_date date,
 country_code text
 );
 CREATE TABLE wta_1.matches (
@@ -4679,7 +4679,7 @@ minutes numeric,
 round text,
 score text,
 surface text,
-date_value date,
+tourney_date date,
 tourney_id text,
 tourney_level text,
 tourney_name text,
@@ -4696,7 +4696,7 @@ winner_seed numeric,
 year numeric
 );
 CREATE TABLE wta_1.rankings (
-date_value date,
+ranking_date date,
 ranking numeric,
 player_id numeric,
 ranking_points numeric,
@@ -4802,8 +4802,8 @@ last_name text,
 first_name text,
 title text,
 reports_to numeric,
-date_value date,
-date_value date,
+birth_date date,
+hire_date date,
 address text,
 city text,
 state text,
@@ -4835,7 +4835,7 @@ name text
 CREATE TABLE store_1.invoices (
 id numeric PRIMARY KEY,
 customer_id numeric,
-date_value date,
+invoice_date date,
 billing_address text,
 billing_city text,
 billing_state text,
@@ -5120,7 +5120,7 @@ lat numeric,
 long numeric,
 dock_count numeric,
 city text,
-date_value date
+installation_date date
 );
 CREATE TABLE bike_1.status (
 station_id numeric,
@@ -5131,10 +5131,10 @@ time text
 CREATE TABLE bike_1.trip (
 id numeric PRIMARY KEY,
 duration numeric,
-date_value date,
+start_date date,
 start_station_name text,
 start_station_id numeric,
-date_value date,
+end_date date,
 end_station_name text,
 end_station_id numeric,
 bike_id numeric,
@@ -5179,7 +5179,7 @@ people_id numeric PRIMARY KEY,
 name text,
 height numeric,
 weight numeric,
-date_value date
+date_of_birth date
 );
 CREATE TABLE orchestra.conductor (
 conductor_id numeric PRIMARY KEY,
@@ -5291,9 +5291,9 @@ customer_id numeric,
 workshop_group_id text,
 status_code text,
 store_id numeric,
-date_value date,
-date_value date,
-date_value date,
+order_date date,
+planned_delivery_date date,
+actual_delivery_date date,
 other_order_details text
 );
 CREATE TABLE cre_Drama_Workshop_Groups.Performers_in_Bookings (
@@ -5304,9 +5304,9 @@ CREATE TABLE cre_Drama_Workshop_Groups.Customer_Orders (
 order_id numeric PRIMARY KEY,
 customer_id numeric,
 store_id numeric,
-date_value date,
-date_value date,
-date_value date,
+order_date date,
+planned_delivery_date date,
+actual_delivery_date date,
 other_order_details text
 );
 CREATE TABLE cre_Drama_Workshop_Groups.Order_Items (
@@ -5456,8 +5456,8 @@ middle_name text,
 last_name text,
 cell_mobile_number text,
 email_address text,
-date_value date,
-date_value date,
+date_first_rental date,
+date_left_university date,
 other_student_details text
 );
 CREATE TABLE behavior_monitoring.Teachers (
@@ -5475,7 +5475,7 @@ CREATE TABLE behavior_monitoring.Assessment_Notes (
 notes_id numeric,
 student_id numeric,
 teacher_id numeric,
-date_value date,
+date_of_notes date,
 text_of_notes text,
 other_details text
 );
@@ -5483,8 +5483,8 @@ CREATE TABLE behavior_monitoring.Behavior_Incident (
 incident_id numeric PRIMARY KEY,
 incident_type_code text,
 student_id numeric,
-date_value date,
-date_value date,
+date_incident_start date,
+date_incident_end date,
 incident_summary text,
 recommendations text,
 other_details text
@@ -5493,16 +5493,16 @@ CREATE TABLE behavior_monitoring.Detention (
 detention_id numeric PRIMARY KEY,
 detention_type_code text,
 teacher_id numeric,
-date_value date,
-date_value date,
+datetime_detention_start date,
+datetime_detention_end date,
 detention_summary text,
 other_details text
 );
 CREATE TABLE behavior_monitoring.Student_Addresses (
 student_id numeric,
 address_id numeric,
-date_value date,
-date_value date,
+date_address_from date,
+date_address_to date,
 monthly_rental numeric,
 other_details text
 );
@@ -5517,7 +5517,7 @@ document_type_name text,
 document_type_description text
 );
 CREATE TABLE cre_Doc_Tracking_DB.Ref_Calendar (
-date_value date PRIMARY KEY,
+calendar_date date PRIMARY KEY,
 day_number numeric
 );
 CREATE TABLE cre_Doc_Tracking_DB.Ref_Locations (
@@ -5532,7 +5532,7 @@ role_description text
 );
 CREATE TABLE cre_Doc_Tracking_DB.All_Documents (
 document_id numeric PRIMARY KEY,
-date_value date,
+date_stored date,
 document_type_code text,
 document_name text,
 document_description text,
@@ -5543,21 +5543,21 @@ employee_id numeric PRIMARY KEY,
 role_code text,
 employee_name text,
 gender_mfu text,
-date_value date,
+date_of_birth date,
 other_details text
 );
 CREATE TABLE cre_Doc_Tracking_DB.Document_Locations (
 document_id numeric PRIMARY KEY,
 location_code text,
-date_value date,
-date_value date
+date_in_location_from date,
+date_in_locaton_to date
 );
 CREATE TABLE cre_Doc_Tracking_DB.Documents_to_be_Destroyed (
 document_id numeric PRIMARY KEY,
 destruction_authorised_by_employee_id numeric,
 destroyed_by_employee_id numeric,
-date_value date,
-date_value date,
+planned_destruction_date date,
+actual_destruction_date date,
 other_details text
 );
 CREATE TABLE university_basketball.basketball_match (
@@ -5696,7 +5696,7 @@ CREATE TABLE cre_Theme_park.Visits (
 visit_id numeric PRIMARY KEY,
 tourist_attraction_id numeric,
 tourist_id numeric,
-date_value date,
+visit_date date,
 visit_details text
 );
 CREATE TABLE cre_Theme_park.Photos (
@@ -5725,7 +5725,7 @@ CREATE TABLE twitter_1.tweets (
 id numeric PRIMARY KEY,
 uid numeric,
 text text,
-date_value date
+createdate date
 );
 CREATE TABLE twitter_1.user_profiles (
 uid numeric PRIMARY KEY,
@@ -5762,7 +5762,7 @@ city_code text
 );
 CREATE TABLE voter_2.Voting_record (
 stuid numeric,
-date_value date,
+registration_date date,
 election_cycle text,
 president_vote numeric,
 vice_president_vote numeric,
@@ -5782,7 +5782,7 @@ CREATE TABLE wedding.church (
 church_id numeric PRIMARY KEY,
 name text,
 organized_by text,
-date_value date,
+open_date date,
 continuation_of text
 );
 CREATE TABLE wedding.wedding (
@@ -5853,28 +5853,28 @@ CREATE TABLE customers_and_addresses.Customers (
 customer_id numeric PRIMARY KEY,
 payment_method text,
 customer_name text,
-date_value date,
+date_became_customer date,
 other_customer_details text
 );
 CREATE TABLE customers_and_addresses.Customer_Addresses (
 customer_id numeric,
 address_id numeric,
-date_value date,
+date_address_from date,
 address_type text,
-date_value date
+date_address_to date
 );
 CREATE TABLE customers_and_addresses.Customer_Contact_Channels (
 customer_id numeric,
 channel_code text,
-date_value date,
-date_value date,
+active_from_date date,
+active_to_date date,
 contact_number text
 );
 CREATE TABLE customers_and_addresses.Customer_Orders (
 order_id numeric PRIMARY KEY,
 customer_id numeric,
 order_status text,
-date_value date,
+order_date date,
 order_details text
 );
 CREATE TABLE customers_and_addresses.Order_Items (
@@ -5985,7 +5985,7 @@ package_option text
 CREATE TABLE tvshow.TV_series (
 id numeric PRIMARY KEY,
 episode text,
-date_value date,
+air_date date,
 rating text,
 share numeric,
 18_49_rating_share text,
@@ -5998,7 +5998,7 @@ id numeric PRIMARY KEY,
 title text,
 directed_by text,
 written_by text,
-date_value date,
+original_air_date date,
 production_code numeric,
 channel text
 );
@@ -6040,8 +6040,8 @@ CREATE TABLE customer_complaints.Products (
 product_id numeric PRIMARY KEY,
 parent_product_id numeric,
 product_category_code text,
-date_value date,
-date_value date,
+date_product_first_available date,
+date_product_discontinued date,
 product_name text,
 product_description text,
 product_price numeric
@@ -6053,8 +6053,8 @@ customer_id numeric,
 complaint_outcome_code text,
 complaint_status_code text,
 complaint_type_code text,
-date_value date,
-date_value date,
+date_complaint_raised date,
+date_complaint_closed date,
 staff_id numeric
 );
 CREATE TABLE department_management.department (
@@ -6110,13 +6110,13 @@ contact_phone text
 CREATE TABLE customers_and_products_contacts.Customer_Address_History (
 customer_id numeric,
 address_id numeric,
-date_value date,
-date_value date
+date_from date,
+date_to date
 );
 CREATE TABLE customers_and_products_contacts.Customer_Orders (
 order_id numeric PRIMARY KEY,
 customer_id numeric,
-date_value date,
+order_date date,
 order_status_code text
 );
 CREATE TABLE customers_and_products_contacts.Order_Items (
@@ -6135,7 +6135,7 @@ fname text,
 minit text,
 lname text,
 ssn numeric PRIMARY KEY,
-date_value date,
+bdate date,
 address text,
 sex text,
 salary numeric,
@@ -6146,7 +6146,7 @@ CREATE TABLE company_1.department (
 dname text,
 dnumber numeric PRIMARY KEY,
 mgr_ssn numeric,
-date_value date
+mgr_start_date date
 );
 CREATE TABLE company_1.project (
 pname text,
@@ -6158,7 +6158,7 @@ CREATE TABLE company_1.dependent (
 essn numeric PRIMARY KEY,
 dependent_name text,
 sex text,
-date_value date,
+bdate date,
 relationship text
 );
 CREATE TABLE company_1.dept_locations (
@@ -6230,8 +6230,8 @@ CREATE TABLE product_catalog.Catalogs (
 catalog_id numeric PRIMARY KEY,
 catalog_name text,
 catalog_publisher text,
-date_value date,
-date_value date
+date_of_publication date,
+date_of_latest_revision date
 );
 CREATE TABLE product_catalog.Catalog_Structure (
 catalog_level_number numeric PRIMARY KEY,
