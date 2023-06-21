@@ -1855,7 +1855,7 @@ CREATE TABLE railway.train (
 train_id numeric PRIMARY KEY,
 train_num text,
 name text,
-from text,
+from_value text,
 arrival text,
 railway_id numeric
 );
@@ -2721,8 +2721,8 @@ appointmentid numeric PRIMARY KEY,
 patient numeric,
 prepnurse numeric,
 physician numeric,
-start time,
-end time,
+start_time time,
+end_time time,
 examinationroom text
 );
 CREATE TABLE hospital_1.Medication (
@@ -3754,7 +3754,7 @@ CREATE TABLE aircraft.airport (
 airport_id numeric PRIMARY KEY,
 airport_name text,
 total_passengers numeric,
-%_change_2007 text,
+change_perc text,
 international_passengers numeric,
 domestic_passengers numeric,
 transit_passengers numeric,
@@ -5988,7 +5988,7 @@ episode text,
 air_date date,
 rating text,
 share numeric,
-18_49_rating_share text,
+rating_share text,
 viewers_m text,
 weekly_rank numeric,
 channel text
