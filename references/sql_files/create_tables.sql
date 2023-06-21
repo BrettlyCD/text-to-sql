@@ -5201,7 +5201,7 @@ performance_id numeric PRIMARY KEY,
 orchestra_id numeric,
 type text,
 date_value date,
-official_ratings_(millions) numeric,
+official_ratings_mil numeric,
 weekly_rank text,
 share text
 );
