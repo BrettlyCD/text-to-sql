@@ -1,11 +1,3 @@
-/*
-created with this python function against the created list of schemas in ../../notebooks/1.0 Data Wrangling - DB.ipynb
-with open('/Users/brettly/Sboard/projects/text-to-sql/references/sql_files/create_schema.sql', 'w') as myFile:
-    for schema in schemas:
-        statement = "CREATE SCHEMA "+schema+";\n"
-        myFile.write(statement)
-*/pwd
-
 CREATE SCHEMA perpetrator;
 CREATE SCHEMA college_2;
 CREATE SCHEMA flight_company;
