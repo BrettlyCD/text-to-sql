@@ -4,7 +4,7 @@ with open('/Users/brettly/Sboard/projects/text-to-sql/references/sql_files/creat
     for schema in schemas:
         statement = "CREATE SCHEMA "+schema+";\n"
         myFile.write(statement)
-*/
+*/pwd
 
 CREATE SCHEMA perpetrator;
 CREATE SCHEMA college_2;
