@@ -1,3 +1,11 @@
+/*
+Created in python notebook ../../notebooks/1.0 Data Wrangling - DB.ipynb
+with open('/Users/brettly/Sboard/projects/text-to-sql/references/sql_files/create_schema.sql', 'w') as myFile:
+    for schema in schemas:
+        statement = "CREATE SCHEMA "+schema+";\n"
+        myFile.write(statement)
+*/
+
 CREATE SCHEMA perpetrator;
 CREATE SCHEMA college_2;
 CREATE SCHEMA flight_company;
