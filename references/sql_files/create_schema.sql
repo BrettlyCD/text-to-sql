@@ -1,5 +1,5 @@
 /*
-Created in python notebook ../../notebooks/1.0 Data Wrangling - DB.ipynb
+Created in python notebook ../../notebooks/1.0_data_wrangling_db.ipynb
 with open('/Users/brettly/Sboard/projects/text-to-sql/references/sql_files/create_schema.sql', 'w') as myFile:
     for schema in schemas:
         statement = "CREATE SCHEMA "+schema+";\n"

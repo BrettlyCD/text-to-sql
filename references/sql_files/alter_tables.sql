@@ -1,5 +1,5 @@
 /*
-Create with the help of chatGPT, ran in python notebook ../../notebooks/1.0 Data Wrangling - DB.ipynb
+Create with the help of chatGPT, ran in python notebook ../../notebooks/1.0_data_wrangling_db.ipynb
 with open('/Users/brettly/Sboard/projects/text-to-sql/references/sql_files/alter_tables.sql', 'w') as fkFile:
     for statement in alter_statements:
         fkFile.write(statement)
