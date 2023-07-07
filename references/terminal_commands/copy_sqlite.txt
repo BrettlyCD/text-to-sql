@@ -1,0 +1,3 @@
+Command from copying all .sqlite files to our created database folder within data/processed titled 'db'
+
+cp **/*.sqlite ../../../processed/db/
