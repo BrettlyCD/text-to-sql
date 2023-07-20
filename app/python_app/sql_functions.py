@@ -1,41 +1,19 @@
 #Create python functions that interact with db and have multiple entry points to LLMs
 
-import pandas as pd
 import os
-from dotenv import load_dotenv
-import time
 
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain import HuggingFaceHub, SQLDatabase
+from langchain import SQLDatabase
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-
-#setup embeddings using HuggingFace and the directory location
-embeddings  = HuggingFaceEmbeddings()
-persist_dir = '../data/processed/chromadb/schema-table-split'
-
-# load from disk
-vectordb = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
-
-#get api key
-load_dotenv()
-hf_api_token = os.getenv('hf_token')
-
-#add path to HF repo
-repo_id = 'google/flan-t5-xxl'
-
-#establish llm model
-llm = HuggingFaceHub(repo_id=repo_id, huggingfacehub_api_token=hf_api_token, model_kwargs={"temperature": 0.1, "max_length": 256})
 
 ### Setup functions to interact with database and llms
 
 
-def similar_doc_search(question, vector_db=vectordb, k=3):
+def similar_doc_search(question, vector_database, top_k=3):
     """
     Run similarity search through a vectordb query on the user input question and return the k most similar schema-table combinations in document form..
     """
-    similar_docs = vector_db.similarity_search(question, k)
+    similar_docs = vector_database.similarity_search(question, k=top_k)
 
     return similar_docs
 
@@ -48,6 +26,20 @@ def identify_schemas(documents):
     target_schemas = set(doc.metadata['schema'] for doc in documents)
 
     return target_schemas
+
+def connect_db(db_path, target_schema):
+    """
+    Take in the identified schema and connect to the sqlite database with that name
+    """
+    db_filepath = db_path
+    db_filename = target_schema + '.sqlite'
+
+    #point to database
+    base_dir = os.path.dirname(os.path.abspath(db_filepath+db_filename)) #get the full path within the device
+    db_path = os.path.join(base_dir, db_filename) #combine with filename to get db_path
+    db = SQLDatabase.from_uri("sqlite:///" + db_path) #connect via the lanchain method
+
+    return db
 
 def prioritize_tables(documents, target_schema, sql_database):
     """
@@ -69,7 +61,7 @@ def get_table_info(tables, database):
     table_info = []
     for table in tables:
         table_name = table
-        info = db.get_table_info(table_names=[table])
+        info = database.get_table_info(table_names=[table])
         table_info.append('DDL for the ' + table_name + ' table:' + info)
 
     #merge the items
@@ -174,7 +166,7 @@ def llm_debug_empty(sql_query, question, lang_model):
 
     return debugged_query
 
-def llm_analyze(sql_query, query_result, question, lang_model):
+def llm_analyze(query_result, question, lang_model):
     """
     To be executed if the run SQL query returns a valid results.
     Will provide the full output of the original question, final sql query, and answer.
@@ -193,10 +185,5 @@ def llm_analyze(sql_query, query_result, question, lang_model):
     analyze_chain = LLMChain(llm=lang_model, prompt=analyze_prompt, verbose=False)
     
     llm_answer = analyze_chain.predict()
-    
-    output = f"""
-            Input question: {question}
-            SQL Query: {sql_query}
-            Answer: {llm_answer}"""
 
-    return output
+    return llm_answer
