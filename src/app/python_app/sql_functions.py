@@ -52,7 +52,6 @@ def prioritize_tables(documents, target_schema, sql_database):
 
     priority_tables = sorted(table_names, key=lambda x: (table_indices.get(x, float('inf')), table_names.index(x)))
 
-    print("\nsorting order for tables: "+ str(table_sorting))
     return priority_tables
 
 def get_table_info(tables, database):
