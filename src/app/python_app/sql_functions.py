@@ -23,7 +23,7 @@ def identify_schemas(documents):
     Use the metadata.
     And convert this into a set of unique schemas returned by that search.
     """
-    target_schemas = set(doc.metadata['schema'] for doc in documents)
+    target_schemas = list(dict.fromkeys([doc.metadata['schema'] for doc in documents]))
 
     return target_schemas
 
@@ -173,13 +173,14 @@ def llm_analyze(query_result, question, lang_model):
     """
     analyze_prompt = PromptTemplate(
         input_variables=[],
-        template = f"""{query_result}
+        template = f"""
+    You are an expert data analyst. Given an output of an SQL query, first look at the output and then determine the answer to a user question.
+    
+    SQL Output: "{query_result}"
+    Question: "{question}"
 
-        You are an expert data analyst. First look at the results of the above SQL output then identify the answer to this question:
-        Question: "{question}"
-
-        Then the answer in one sentence:
-        """
+    Describe your answer in one sentence:
+    """
         )
     
     analyze_chain = LLMChain(llm=lang_model, prompt=analyze_prompt, verbose=False)
