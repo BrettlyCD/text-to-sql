@@ -10,8 +10,8 @@ from sql_functions import similar_doc_search, identify_schemas, connect_db, prio
 
 #setup embeddings using HuggingFace and the directory location
 embeddings  = HuggingFaceEmbeddings()
-persist_dir = '../../data/processed/chromadb/schema-table-split'
-db_filepath = '../../data/processed/db/'
+persist_dir = '../../../data/processed/chromadb/schema-table-split'
+db_filepath = '../../../data/processed/db/'
 
 # load from disk
 vectordb = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
@@ -39,7 +39,7 @@ def sql_bot(language_model=llm, max_attempts=3):
     db_documents = similar_doc_search(question=user_question, vector_database=vectordb, top_k=3)
     print(db_documents)
 
-    #go through those documents and create a set containing the top schema(s)
+    #go through those documents and create a list of unique schemas to try
     top_schemas = identify_schemas(db_documents)
     print(top_schemas)
 
@@ -56,15 +56,22 @@ def sql_bot(language_model=llm, max_attempts=3):
 
         #access the database and pull down the DDL and 3 sample rows from each table, save to a single variable to use in our prompt
         tables_info = get_table_info(tables=tables_sorted, database=db)
-        print(tables_info[:25])
+        print(tables_info[:10])
 
         #get the sql dialect to be used in our prompt - would like to eventually use this in our connect_db path somehow (to update the file prefix)
         sql_dialect = get_sql_dialect(database=db)
         print(sql_dialect)
 
         #1st LLM entry - write the SQL statement and return it
-        sql_statement = llm_create_sql(sql_dialect=sql_dialect, table_info=tables_info, question=user_question, lang_model=language_model)
-        print(sql_statement)
+        #including a try-except statement here incase the input is too large for the current setup with HuggingFaceHub inference API
+        try:
+            sql_statement = llm_create_sql(sql_dialect=sql_dialect, table_info=tables_info, question=user_question, lang_model=language_model)
+            print(sql_statement)
+        except ValueError as err_msg:
+            print(err_msg)
+            print('\nMoving on to try the next schema...')
+            result = 'FAIL'
+            continue
 
         #2nd LLM entry - validate that returned query
         validated_sql = llm_check_sql(sql_query=sql_statement, sql_dialect=sql_dialect, lang_model=language_model)
