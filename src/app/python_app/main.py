@@ -35,16 +35,18 @@ def sql_bot(language_model=llm, max_attempts=3):
     user_question = input("What would you like to know from your data?: ")
 
     #find top 3 related documents (schema - table combos w/ metadata) in our vector database
+    print("\nIdentifying most likely schemas...")
     db_documents = similar_doc_search(question=user_question, vector_database=vectordb, top_k=3)
 
     #go through those documents and create a list of unique schemas to try
     top_schemas = identify_schemas(db_documents)
+    print(top_schemas)
 
     #initiate a loop to test each of the top schemas
     for schema in list(top_schemas): #its in a set, so have to convert to a list
 
         #connect to the related database
-        print("\nConnecting to " + schema + " database...")
+        print("\nConnecting to " + schema + " schema...")
         db = connect_db(db_path=db_filepath, target_schema=schema)
 
         #sort or tables by relation to the question
@@ -63,7 +65,7 @@ def sql_bot(language_model=llm, max_attempts=3):
             sql_statement = llm_create_sql(sql_dialect=sql_dialect, table_info=tables_info, question=user_question, lang_model=language_model)
         
         except ValueError as err_msg:
-            print("\n" + err_msg)
+            print("\n" + str(err_msg))
             print('\nMoving on to try the next schema...')
             result = 'FAIL'
             continue
