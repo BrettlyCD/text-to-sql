@@ -10,7 +10,7 @@ from sql_functions import similar_doc_search, identify_schemas, connect_db, prio
 
 #setup embeddings using HuggingFace and the directory location
 embeddings  = HuggingFaceEmbeddings()
-persist_dir = '../../../data/processed/chromadb/schema-table-split'
+persist_dir = '../../../data/processed/chromadb/schema-table-info'
 db_filepath = '../../../data/processed/db/'
 
 # load from disk
