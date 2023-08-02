@@ -23,7 +23,7 @@ schema_df = build_schema_info(data_directory, db_type)
 schema_json = convert_df_to_json(schema_df)
 
 ##### SAVE SCHEMA INFO #####
-save_path = '../../../../data/processed/test-db/'
+save_path = '../../../../data/processed/db/'
 
 #save df in pickle file
 filepath = save_path+'schema_info.pkl'
