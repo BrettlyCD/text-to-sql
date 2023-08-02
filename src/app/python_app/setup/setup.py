@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import json
 
-from setup_functions import get_filenames, get_table_names, get_column_info, df_text_processing, build_schema_info, convert_df_to_json
+from db_setup_functions import get_filenames, get_table_names, get_column_info, df_text_processing, build_schema_info, convert_df_to_json
 
 #download spider database from this location "https://drive.google.com/uc?export=download&id=1TqleXec_OykOYFREKKtschzY29dUcVAQ"
 
