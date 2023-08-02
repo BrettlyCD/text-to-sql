@@ -10,12 +10,8 @@ from setup_functions import get_filenames, get_table_names, get_column_info, df_
 #unzip and move the files to the data directory
 
 #point to location you saved the data to and the type of database
-data_directory = '../test/db/database/'
+data_directory = '../../../../data/raw/spider/database/'
 db_type = '.sqlite'
-
-#get full database path
-#base_dir = os.path.dirname(os.path.abspath(data_directory))
-#print(base_dir)
 
 ##### BUILD SCHEMA INFO #####
 #you can do this from the provided tables, but that would not be as scaleable in the real world.
@@ -27,7 +23,7 @@ schema_df = build_schema_info(data_directory, db_type)
 schema_json = convert_df_to_json(schema_df)
 
 ##### SAVE SCHEMA INFO #####
-save_path = '../test/processed_data/'
+save_path = '../../../../data/processed/test-db/'
 
 #save df in pickle file
 filepath = save_path+'schema_info.pkl'
