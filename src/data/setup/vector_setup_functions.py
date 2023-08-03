@@ -41,7 +41,7 @@ def prep_chroma_documents(json_path, db_path):
     docs = []
     error_log = set() #use this to track schemas with errors
 
-    print("Prepping documents...\n")
+    print("\nPrepping documents...")
 
     for item in get_json(json_path):
         #connect to database
@@ -85,7 +85,7 @@ def prep_chroma_documents(json_path, db_path):
 
 def create_chroma_db(docs, persist_dir, embed_func):
     """Take in documents, a location to save the database locally, and the function for embedding and creat the vector database"""
-    print("Creating vector database...\n")
+    print("\nCreating vector database...\n")
     print("Will take 10-15 minutes...")
     Chroma.from_documents(documents=docs, embedding=embed_func, persist_directory=persist_dir)
     print("...Success!")

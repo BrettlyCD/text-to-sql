@@ -48,7 +48,7 @@ print("...Success")
 embeddings = HuggingFaceEmbeddings()
 
 #point to json file with schema info
-json_path = '../data/processed/db/schema_info.json'
+json_path = '../processed/db/schema_info.json'
 
 #point to location with .sqlite files
 data_directory = '../data/raw/spider/database/'
