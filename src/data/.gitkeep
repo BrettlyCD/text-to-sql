@@ -1,0 +1,4 @@
+#add our empty directories under this folder for the end user to pull down and eventually save data to.
+
+processed/
+raw/
