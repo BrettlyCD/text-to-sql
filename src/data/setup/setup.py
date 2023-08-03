@@ -13,9 +13,7 @@ from sqlalchemy import exc
 from vector_setup_functions import get_json, connect_db, prep_chroma_documents, create_chroma_db
 from db_setup_functions import get_filenames, get_table_names, get_column_info, df_text_processing, build_schema_info, convert_df_to_json
 
-#download spider database from this location "https://drive.google.com/uc?export=download&id=1TqleXec_OykOYFREKKtschzY29dUcVAQ"
-
-#unzip and move the files to the data directory
+#### BUILD CONSOLIDATED SCHEMA INFORMATION ####
 
 #point to location you saved the data to and the type of database
 data_directory = '../raw/spider/database/'
