@@ -14,7 +14,7 @@ This was built specifically off of the Spider dataset. Follw these steps to recr
 This application pulls the schema information from the SQLite database files and utilizes a locally stored Chroma Vector database to identify which schema to use to answer questions. Run the following commands to compile the database info and build the vector database:
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 and 
 ```
