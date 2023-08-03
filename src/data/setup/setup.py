@@ -10,6 +10,10 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceEmbeddings
 
 from sqlalchemy import exc
+from sqlalchemy.exc import SAWarning
+
+warnings.filterwarnings('ignore', category=SAWarning)
+
 
 from vector_setup_functions import get_json, connect_db, prep_chroma_documents, create_chroma_db
 from db_setup_functions import get_filenames, get_table_names, get_column_info, df_text_processing, build_schema_info, convert_df_to_json

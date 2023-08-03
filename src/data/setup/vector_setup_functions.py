@@ -9,6 +9,9 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceEmbeddings
 
 from sqlalchemy import exc
+from sqlalchemy.exc import SAWarning
+
+warnings.filterwarnings('ignore', category=SAWarning)
 
 def get_json(path):
     """Return json file from specified filepath"""
@@ -55,16 +58,14 @@ def prep_chroma_documents(json_path, db_path):
         table = item['table']
         columns = json.dumps([col['c_name'] for col in item['columns']])
 
-        with warnings.catch_warnings(): #add this to ignore SAWarnings - to not have them print
-            warnings.simplefilter("ignore", category=exc.SAWarning)
-            try:
-                table_info = db.get_table_info_no_throw(table_names=[table]) #put try-except here becasue there are some issues in the source sqlite database. I want to call this out, but continue.
-            except exc.SQLAlchemyError as e:
-                table_info = ""
-                error_log.add(schema)
-            except TypeError as te:
-                table_info = ""
-                error_log.add(schema)          
+        try:
+            table_info = db.get_table_info_no_throw(table_names=[table]) #put try-except here becasue there are some issues in the source sqlite database. I want to call this out, but continue.
+        except exc.SQLAlchemyError as e:
+            table_info = ""
+            error_log.add(schema)
+        except TypeError as te:
+            table_info = ""
+            error_log.add(schema)          
 
         #create document
         doc = Document(
