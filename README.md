@@ -16,18 +16,18 @@ This application pulls the schema information from the SQLite database files and
 ```
 pip3 install -r requirements.txt
 ```
-and 
+Then navigate to the data/setup directory and run the setup with this command: 
 ```
-python3 src/data/setup/setup.py
+python3 setup.py
 ```
 
 This will take about 10-15 minutes to fully run.
 
 
 ## Using SQL Copilot
-Start the program with the following command:
+Navigate to the src/app directory and start the program with the following commands:
 ```
-python3 src/app/main.py
+python3 main.py
 ```
 
 Then input your question - happy data analyzing!
