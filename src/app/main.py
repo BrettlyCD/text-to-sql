@@ -10,8 +10,8 @@ from sql_functions import similar_doc_search, identify_schemas, connect_db, prio
 
 #setup embeddings using HuggingFace and the directory location
 embeddings  = HuggingFaceEmbeddings()
-persist_dir = '../../../data/processed/chromadb/schema-table-info'
-db_filepath = '../../../data/processed/db/'
+persist_dir = '../data/processed/chromadb'
+db_filepath = '../data/raw/spider/database/'
 
 # load from disk
 vectordb = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
@@ -21,7 +21,7 @@ load_dotenv()
 hf_api_token = os.getenv('hf_token')
 
 #add path to HF repo
-repo_id = 'google/flan-t5-xxl'
+repo_id = 'google/flan-t5-xxl' #using the google flan-t5-xxl model
 
 #establish llm model
 llm = HuggingFaceHub(repo_id=repo_id, huggingfacehub_api_token=hf_api_token, model_kwargs={"temperature": 0.1, "max_length": 256})
@@ -29,7 +29,7 @@ llm = HuggingFaceHub(repo_id=repo_id, huggingfacehub_api_token=hf_api_token, mod
 #define application - I want to use the imported funciton, but also loop through each of the top likely schemas. This will slow it down, but allow for testing multiple options.
 #this may not be feasible in a final model that could potentially call to a paid LLM. But we can potentially build out a better entity extraction step later on.
 
-def sql_bot(language_model=llm, max_attempts=3):
+def sql_copilot(language_model=llm, max_attempts=3):
 
     #start by getting user input of the question they want to ask
     user_question = input("What would you like to know from your data?: ")
@@ -133,4 +133,4 @@ def sql_bot(language_model=llm, max_attempts=3):
         print("Sorry, I was not able to find the answer to your question.")
 
 if __name__ == '__main__':
-    sql_bot()
+    sql_copilot()
