@@ -51,10 +51,10 @@ embeddings = HuggingFaceEmbeddings()
 json_path = '../processed/db/schema_info.json'
 
 #point to location with .sqlite files
-data_directory = '../data/raw/spider/database/'
+data_directory = '../raw/spider/database/'
 
 #point to location to save the vector database
-persist_directory = '../data/processed/chromadb/'
+persist_directory = '../processed/chromadb/'
 
 schema_docs = prep_chroma_documents(json_path=json_path, db_path=data_directory)
 
