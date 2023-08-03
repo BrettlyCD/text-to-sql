@@ -15,6 +15,9 @@ This application pulls the schema information from the SQLite database files and
 
 ```
 pip install -r requirements.txt
+```
+and 
+```
 python3 src/data/setup/setup.py
 ```
 
