@@ -10,7 +10,7 @@ from db_setup_functions import get_filenames, get_table_names, get_column_info, 
 #unzip and move the files to the data directory
 
 #point to location you saved the data to and the type of database
-data_directory = '../../../../data/raw/spider/database/'
+data_directory = '../raw/spider/database/'
 db_type = '.sqlite'
 
 ##### BUILD SCHEMA INFO #####
@@ -23,8 +23,9 @@ schema_df = build_schema_info(data_directory, db_type)
 schema_json = convert_df_to_json(schema_df)
 
 ##### SAVE SCHEMA INFO #####
-save_path = '../../../../data/processed/db/'
+save_path = '../data/processed/db/'
 
+print("\nSaving dataframe and JSON...")
 #save df in pickle file
 filepath = save_path+'schema_info.pkl'
 schema_df.to_pickle(filepath)
@@ -32,5 +33,7 @@ schema_df.to_pickle(filepath)
 #save json in json file
 with open(save_path+'schema_info.json', 'w') as file:
     json.dump(schema_json, file)
+
+print("...Success")
 
 

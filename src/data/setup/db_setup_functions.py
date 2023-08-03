@@ -99,6 +99,7 @@ def convert_df_to_json(df):
        .reset_index()
        .rename(columns={0:'columns'})
        .to_dict(orient='records'))
+    print("...Success")
     
     return json
     

@@ -17,13 +17,13 @@ from vector_setup_functions import get_json, connect_db, prep_chroma_documents, 
 embeddings = HuggingFaceEmbeddings()
 
 #point to json file with schema info
-json_path = '../../../../data/processed/db/schema_info.json'
+json_path = '../data/processed/db/schema_info.json'
 
-#point to location with .sqlitefiles
-data_directory = '../../../../data/raw/spider/database/'
+#point to location with .sqlite files
+data_directory = '../data/raw/spider/database/'
 
 #point to location to save the vector database
-persist_directory = '../../../../data/processed/chromadb'
+persist_directory = '../data/processed/chromadb/'
 
 schema_docs = prep_chroma_documents(json_path=json_path, db_path=data_directory)
 
