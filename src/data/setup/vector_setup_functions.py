@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import os
+import warnings
 
 from langchain import SQLDatabase
 from langchain.docstore.document import Document
@@ -42,6 +43,8 @@ def prep_chroma_documents(json_path, db_path):
     error_log = set() #use this to track schemas with errors
 
     print("\nPrepping documents...")
+    print("...Building with schema, table, columns, DDL, and 3 sample rows...\n")
+
 
     for item in get_json(json_path):
         #connect to database
@@ -51,14 +54,17 @@ def prep_chroma_documents(json_path, db_path):
         schema = item['schema']
         table = item['table']
         columns = json.dumps([col['c_name'] for col in item['columns']])
-        try:
-            table_info = db.get_table_info_no_throw(table_names=[table]) #put try-except here becasue there are some issues in the source sqlite database. I want to call this out, but continue.
-        except exc.SQLAlchemyError as e:
-            table_info = ""
-            error_log.add(schema)
-        except TypeError as te:
-            table_info = ""
-            error_log.add(schema)          
+
+        with warnings.catch_warnings(): #add this to ignore SAWarnings - to not have them print
+            warnings.simplefilter("ignore", category=exc.SAWarning)
+            try:
+                table_info = db.get_table_info_no_throw(table_names=[table]) #put try-except here becasue there are some issues in the source sqlite database. I want to call this out, but continue.
+            except exc.SQLAlchemyError as e:
+                table_info = ""
+                error_log.add(schema)
+            except TypeError as te:
+                table_info = ""
+                error_log.add(schema)          
 
         #create document
         doc = Document(

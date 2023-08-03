@@ -2,6 +2,7 @@ import sqlite3
 import pandas as pd
 import os
 import json
+import warnings
 
 from langchain import SQLDatabase
 from langchain.docstore.document import Document
