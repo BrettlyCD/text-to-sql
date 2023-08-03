@@ -31,7 +31,7 @@ def connect_db(db_path, target_schema):
     """
     Take in the identified schema and connect to the sqlite database with that name
     """
-    db_filepath = db_path
+    db_filepath = db_path + target_schema + '/'
     db_filename = target_schema + '.sqlite'
 
     #point to database
