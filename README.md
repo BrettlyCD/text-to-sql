@@ -16,7 +16,7 @@ This application pulls the schema information from the SQLite database files and
 ```
 pip3 install -r requirements.txt
 ```
-Then navigate to the data/setup directory and run the setup with this command: 
+Then navigate to the src/data/setup directory and run the setup with this command: 
 ```
 python3 setup.py
 ```
