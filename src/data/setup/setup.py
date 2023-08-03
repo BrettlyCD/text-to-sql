@@ -21,13 +21,13 @@ data_directory = '../raw/spider/database/'
 db_type = '.sqlite'
 
 #create a dataframe with schema info
-schema_df = build_schema_info(data_directory, db_type)
+schema_df = build_schema_info(filepath=data_directory, filetype=db_type)
 
 #create a json of the same data if that fomrat tickles your fancy
-schema_json = convert_df_to_json(schema_df)
+schema_json = convert_df_to_json(df=schema_df)
 
 ##### SAVE SCHEMA INFO #####
-save_path = '../data/processed/db/'
+save_path = '../processed/db/'
 
 print("\nSaving dataframe and JSON...")
 #save df in pickle file

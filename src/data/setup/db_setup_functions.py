@@ -88,18 +88,18 @@ def build_schema_info(filepath, filetype):
 
     schema_df_processed = df_text_processing(schema_df)
 
-    print("...Information compiled in DataFrame")
+    print("...Information compiled in dataframe")
     
     return schema_df_processed
 
 def convert_df_to_json(df):
-    print("\n...Creating JSON")
+    print("\nCreating JSON...")
     json = (df.groupby(['schema', 'schema_split', 'table','table_split']) #breakout each of these columns into a record for schema-table combos
        .apply(lambda x: x[['c_id','c_name','c_name_split','c_type']].to_dict('records')) #brekout these into dictionaries under each of the schema-table combos
        .reset_index()
        .rename(columns={0:'columns'})
        .to_dict(orient='records'))
-    print("...Success")
+    print("...JSON created")
     
     return json
     
