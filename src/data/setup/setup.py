@@ -14,13 +14,11 @@ from vector_setup_functions import get_json, connect_db, prep_chroma_documents, 
 from db_setup_functions import get_filenames, get_table_names, get_column_info, df_text_processing, build_schema_info, convert_df_to_json
 
 #### BUILD CONSOLIDATED SCHEMA INFORMATION ####
+#you can do this from the provided tables, but that would not be as scaleable in the real world.
 
 #point to location you saved the data to and the type of database
 data_directory = '../raw/spider/database/'
 db_type = '.sqlite'
-
-##### BUILD SCHEMA INFO #####
-#you can do this from the provided tables, but that would not be as scaleable in the real world.
 
 #create a dataframe with schema info
 schema_df = build_schema_info(data_directory, db_type)
