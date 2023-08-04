@@ -15,14 +15,14 @@ from sqlalchemy.exc import SAWarning
 warnings.filterwarnings('ignore', category=SAWarning)
 
 
-from vector_setup_functions import get_json, connect_db, prep_chroma_documents, create_chroma_db
-from db_setup_functions import get_filenames, get_table_names, get_column_info, df_text_processing, build_schema_info, convert_df_to_json
+from src.data.setup.vector_setup_functions import get_json, connect_db, prep_chroma_documents, create_chroma_db
+from src.data.setup.db_setup_functions import get_filenames, get_table_names, get_column_info, df_text_processing, build_schema_info, convert_df_to_json
 
 #### BUILD CONSOLIDATED SCHEMA INFORMATION ####
 #you can do this from the provided tables, but that would not be as scaleable in the real world.
 
 #point to location you saved the data to and the type of database
-data_directory = '../raw/spider/database/'
+data_directory = 'src/data/raw/spider/database/'
 db_type = '.sqlite'
 
 #create a dataframe with schema info
@@ -32,7 +32,7 @@ schema_df = build_schema_info(filepath=data_directory, filetype=db_type)
 schema_json = convert_df_to_json(df=schema_df)
 
 ##### SAVE SCHEMA INFO #####
-save_path = '../processed/db/'
+save_path = 'src/data/processed/db/'
 
 print("\nSaving dataframe and JSON...")
 #save df in pickle file
@@ -53,13 +53,10 @@ print("...Success")
 embeddings = HuggingFaceEmbeddings()
 
 #point to json file with schema info
-json_path = '../processed/db/schema_info.json'
-
-#point to location with .sqlite files
-data_directory = '../raw/spider/database/'
+json_path = 'src/data/processed/db/schema_info.json'
 
 #point to location to save the vector database
-persist_directory = '../processed/chromadb/'
+persist_directory = 'src/data/processed/chromadb/'
 
 schema_docs = prep_chroma_documents(json_path=json_path, db_path=data_directory)
 
