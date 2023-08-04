@@ -9,7 +9,7 @@ Returning data from a relational database by generating SQL statements from natu
 ## Setup
 ### Dataset
 This was built specifically off of the Spider dataset. Follw these steps to recreate:
-1. Please download the data from this [Google Drive](https://drive.google.com/uc?export=download&id=1TqleXec_OykOYFREKKtschzY29dUcVAQ)
+1. Download the data from this [Google Drive](https://drive.google.com/uc?export=download&id=1TqleXec_OykOYFREKKtschzY29dUcVAQ)
 2. Unzip the file
 3. Save the root 'spider' folder under the [src/data/raw/ directory](https://github.com/BrettlyCD/text-to-sql/tree/main/src/data/raw)
 
