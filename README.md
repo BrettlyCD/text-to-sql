@@ -27,7 +27,7 @@ python3 setup.py
 This will take about 10-15 minutes to fully run.
 
 ## HuggingFace API Token
-Currently, this project relies on the google [flan-5f-xxl](https://huggingface.co/google/flan-t5-xxl) languauge model. It is accessed for free through the HuggingFace Inference API. In order to use this method, you need to create an [API token](https://huggingface.co/settings/tokens) and save in in a .env file in the root of the repo:
+Currently, this project relies on the google [flan-t5-xxl](https://huggingface.co/google/flan-t5-xxl) languauge model. It is accessed for free through the HuggingFace Inference API. In order to use this method, you need to create an [API token](https://huggingface.co/settings/tokens) and save in in a .env file in the root of the repo:
 
 ```
 touch .env
