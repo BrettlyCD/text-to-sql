@@ -64,6 +64,12 @@ target/
 *.db
 *.rdb
 
+# Files under src data structures (keep empty folders)
+src/data/processed/*
+!src/data/processed/ .gitkeep
+src/data/raw/*
+!src/data/processed/ .gitkeep
+
 # Pycharm
 .idea
 
