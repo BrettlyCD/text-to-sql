@@ -1,7 +1,7 @@
 Text-to-SQL Copilot
 ==============================
 
-Returning data from a relational database by generating SQL statements from natural language inputs.
+Text-to-SQL Copilot is a tool to support data analysts find and interpret data stored in relational databases. Taking your natural language question as input, it uses a generative text model to write a SQL statement based on your data. Then runs it on your database and analyses the results. And it does this all at no cost using HuggingFace Inference API.
 
 ![copilot_demo](https://github.com/BrettlyCD/text-to-sql/assets/42612621/f2f59382-f283-425d-b0c4-738f7b2aee4a)
 
@@ -11,7 +11,7 @@ Returning data from a relational database by generating SQL statements from natu
 This was built specifically off of the Spider dataset. Follw these steps to recreate:
 1. Download the data from this [Google Drive](https://drive.google.com/uc?export=download&id=1TqleXec_OykOYFREKKtschzY29dUcVAQ)
 2. Unzip the file
-3. Save the root 'spider' folder under the [src/data/raw/ directory](https://github.com/BrettlyCD/text-to-sql/tree/main/src/data/raw)
+3. Save the root 'spider' folder under the [src/data/raw/](https://github.com/BrettlyCD/text-to-sql/tree/main/src/data/raw) directory
 
 ### Setup Process
 This application pulls the schema information from the SQLite database files and utilizes a locally stored Chroma Vector database to identify which schema to use to answer questions. Run the following commands to compile the database info and build the vector database:
@@ -19,7 +19,6 @@ This application pulls the schema information from the SQLite database files and
 ```
 pip3 install -r requirements.txt
 ```
-Then navigate to the src/data/setup directory and run the setup with this command: 
 ```
 python3 setup.py
 ```
@@ -39,7 +38,7 @@ Open the .env file and enter your HuggingFace API token:
 <img width="499" alt="env_example" src="https://github.com/BrettlyCD/text-to-sql/assets/42612621/aa3c6e5f-428b-45be-b626-e5a373a680f5">
 
 ## Using SQL Copilot
-Navigate to the src/app directory and start the program with the following commands:
+Navigate to the [src/app](https://github.com/BrettlyCD/text-to-sql/tree/docs/src) directory and start the program with the following command:
 ```
 python3 main.py
 ```
