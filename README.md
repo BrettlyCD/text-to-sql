@@ -1,7 +1,7 @@
 Text-to-SQL Copilot
 ==============================
 
-Returning data from a relational database by generating SQL statements from natural language inputs.
+Text-to-SQL Copilot is a tool to support data analysts find and interpret data stored in relational databases. Taking your natural language question as input, it uses a generative text model to write a SQL statement based on your data. Then runs it on your database and analyses the results. And it does this all at no cost using HuggingFace Inference API.
 
 ![copilot_demo](https://github.com/BrettlyCD/text-to-sql/assets/42612621/f2f59382-f283-425d-b0c4-738f7b2aee4a)
 
