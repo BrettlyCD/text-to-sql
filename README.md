@@ -9,9 +9,9 @@ Text-to-SQL Copilot is a tool to support data analysts find and interpret data s
 ## Setup
 ### Dataset
 This was built specifically off of the Spider dataset. Follw these steps to recreate:
-1. Please download the data from this [Google Drive](https://drive.google.com/uc?export=download&id=1TqleXec_OykOYFREKKtschzY29dUcVAQ)
+1. Download the data from this [Google Drive](https://drive.google.com/uc?export=download&id=1TqleXec_OykOYFREKKtschzY29dUcVAQ)
 2. Unzip the file
-3. Save the root 'spider' folder under the [src/data/raw/ directory](https://github.com/BrettlyCD/text-to-sql/tree/main/src/data/raw)
+3. Save the root 'spider' folder under the [src/data/raw/](https://github.com/BrettlyCD/text-to-sql/tree/main/src/data/raw) directory
 
 ### Setup Process
 This application pulls the schema information from the SQLite database files and utilizes a locally stored Chroma Vector database to identify which schema to use to answer questions. Run the following commands to compile the database info and build the vector database:
@@ -19,7 +19,6 @@ This application pulls the schema information from the SQLite database files and
 ```
 pip3 install -r requirements.txt
 ```
-Then navigate to the src/data/setup directory and run the setup with this command: 
 ```
 python3 setup.py
 ```
