@@ -1,0 +1,6 @@
+Model: google flan-t5-xxl
+Link: https://huggingface.co/google/flan-t5-xxl
+Accessed via: HuggingFace Inference API
+	https://huggingface.co/inference-api
+
+Requires HuggingFace API Token
