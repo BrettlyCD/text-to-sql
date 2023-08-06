@@ -38,7 +38,7 @@ Open the .env file and enter your HuggingFace API token:
 <img width="499" alt="env_example" src="https://github.com/BrettlyCD/text-to-sql/assets/42612621/aa3c6e5f-428b-45be-b626-e5a373a680f5">
 
 ## Using SQL Copilot
-Navigate to the src/app directory and start the program with the following commands:
+Navigate to the [src/app](https://github.com/BrettlyCD/text-to-sql/tree/docs/src) directory and start the program with the following command:
 ```
 python3 main.py
 ```
