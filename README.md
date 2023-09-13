@@ -43,7 +43,7 @@ Navigate to the [src/app](https://github.com/BrettlyCD/text-to-sql/tree/docs/src
 python3 main.py
 ```
 
-Then input your question - happy data analyzing!
+Then input your question - happy SQL-ing!
 
 
 ## Citation 
